@@ -9,4 +9,4 @@ Usage (miner):
    - $ python miner.py ( by default : -a {see source }  -u http:localhost:5000 )
 
 Usage (wallet, faucet, explorer):
-   In wallet directory, excute index.html
+   - In wallet directory, excute index.html

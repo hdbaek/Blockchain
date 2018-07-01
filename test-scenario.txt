@@ -1,0 +1,13 @@
+[Testing Procedures Proposed]
+
+1. Start the node without any options
+2. Start the miner without any options
+3. Start the Chrome browser in DOS command : C:\Progra~2\Google\Chrome\Application\chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
+4. In browser, load the index.html of wallet
+5. Check the UTXO of the first address 
+6. Send 1 coin to the third address
+7. Check UTXO of the first address and third address
+8. Send 1 coin again and check UTXO of both
+9. Send 1.5 coin from the third address to fourth address
+10. Check UTXO of the third and fourth address
+11. In "Explorer(GET)+", input "chain" and click "Explorer(GET)+" button and watch the results

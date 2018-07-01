@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Wallet/Faucet/Explorer</title>
+    <link rel="stylesheet" type="text/css" href="wallet.css"/>
+	<script src="lib/ethers.min.js"></script>
+    <script src="lib/jquery-3.1.1.min.js"></script>
+    <script src="wallet.js"></script> 
+</head>
+
+<body>
+
+<header id="menu">
+<style type="text/css">
+.box-1 { border:3px solid; padding:0px; color:blue}
+.box-2 { border:3px solid; padding:0px; color:red}
+.box-3 { border:3px solid; padding:0px; color:green}
+</style>
+</header>
+
+<main>
+    <section id="loadingBox">Loading ...</section>
+    <section id="infoBox"><header>x</header><p>Info</p></section>
+    <section id="errorBox"><header>x</header><p>Error</p></section>
+
+    <section id="viewSendTransaction">
+        <h2><center>Simple Wallet, Faucet, Explorer</center></h2><br>
+		1. Select the sender's address (first one:owner of genesis block, second one:miner's) => blue box<br>
+		2. Finds sender's UTXOs using Explorer and check the balance => red box<br>
+		3. Select recipient and set the amount to send => blue box<br>
+		4. Make a transaction, sign it and verify the signed transaction in the display => first green box<br>
+        5. Send signed transaction to the node of the 'IP Addr' and watch the result => second green box<br><br>
+        <input type="button" id="buttonClearForm" value="  Clear all form   "/><br><br>
+		
+		<div class="box-1">
+		<div id="divSignAndSendTransaction">
+			<div><span>Node IP Addr:</span><input name="ipAddress" id="nodeAddress" style="width:350px";></div>
+            <div><span>Sender:</span>
+			<select id="senderAddress">
+			<option value="0xBAe746299e7dEAF3dD05f085E305B3e4ba8CB7D3">"0xBAe746299e7dEAF3dD05f085E305B3e4ba8CB7D3"</option>
+			<option value="0xD229c1d39E436a5f43AeDEA521F14731885B7d6d">0xD229c1d39E436a5f43AeDEA521F14731885B7d6d</option>
+			<option value="0x3D9A7431B6ADB5E1E6e9136a97F513e950f34268">0x3D9A7431B6ADB5E1E6e9136a97F513e950f34268</option>
+			<option value="0x9fB322EeA1EaED720Cdb95EDF21D785ca71224E6">0x9fB322EeA1EaED720Cdb95EDF21D785ca71224E6</option>
+			</select></div>
+			<div><span>Recipient:</span>
+			<select id="recipientAddress">
+			<option value="0xBAe746299e7dEAF3dD05f085E305B3e4ba8CB7D3">"0xBAe746299e7dEAF3dD05f085E305B3e4ba8CB7D3"</option>
+			<option value="0xD229c1d39E436a5f43AeDEA521F14731885B7d6d">0xD229c1d39E436a5f43AeDEA521F14731885B7d6d</option>
+			<option value="0x3D9A7431B6ADB5E1E6e9136a97F513e950f34268">0x3D9A7431B6ADB5E1E6e9136a97F513e950f34268</option>
+			<option value="0x9fB322EeA1EaED720Cdb95EDF21D785ca71224E6">0x9fB322EeA1EaED720Cdb95EDF21D785ca71224E6</option>			
+			</select></div>
+            <div><span>Value:</span><input type="number" id="transferValue" style="width:100px;"/></div><br>
+		</div>	
+		</div><br>
+		<div class="box-2">
+			<div><span><input type="button" id="buttonUrlForExplorer" value="Explore (GET)  "/></span>
+			<select id="urlForExplorer" style="width:300px;">
+			<option value="utxo">Show all my Unspent Transaction Output (UTXO)</option>
+			<option value="blocksize">Show the total size of Blocks</option>
+			<option value="txsize">Show the total size of Transactions</option>
+			<option value="miningblock">Show the current mining Block</option>			
+			</select>&nbsp;&nbsp;&nbsp;&nbsp;		
+			<span><input type="button" id="buttonUrlForExplorer3" value="Explore (POST)"/></span>
+			url:<input type="text" id="option1" style="width:130px;" value="nodes/register" />&nbsp; &nbsp;
+			json:<input type="text" id="option2" style="width:300px;" value='{ "nodes":"http://localhost:5001" }'/>
+			</div>			
+			<div><span><input type="button" id="buttonUrlForExplorer2" value="Explore (GET)+"/></span>
+			<select id="urlForExplorer2" style="width:300px;">
+			<option value="blockinfo">Show Information of a Block, Input number:</option>
+			<option value="txinfo">Show Information of a transaction, Input TX ID:</option>
+			<option value="urlinfo">Show Information for URI, Input URI string:</option>
+			</select>&nbsp;&nbsp;&nbsp;&nbsp;option:<input type="text" id="options" style="width:350px;" placeholder="number, TX-ID string, URI string"/>			
+			</div>
+            <textarea id="textareaFindUtxoResult" class="findUtxo" readonly="true" placeholder="Explore result will be displayed here."></textarea>
+        </div><br>
+		<div class="box-3">
+			<input type="button" id="buttonSignTransaction" value="Sign Transaction"/>
+            <textarea id="textareaSignedTransaction" class="signedTransaction" readonly="true" placeholder="Signed message will be displayed here."></textarea>
+            <input type="button" id="buttonSendSignedTransaction" value="Send Transaction"/>
+            <textarea id="textareaSendTransactionResult" class="result" readonly="true" placeholder="Sent result will be displayed here."></textarea>
+        </div>
+    </section>
+</main>
+
+<footer>Wallet/Faucet/Explorer for Test</footer>
+</body>
+</html>
